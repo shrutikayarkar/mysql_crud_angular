@@ -1,0 +1,88 @@
+<div class="container" ng-controller="myCtrl" ng-init="getdata()">
+	<div class="well">
+		<h3 class="text-center">Add User Details</h3>
+	</div>
+	<div class="form-group">
+		<label>name</label>
+		<input type="text" placeholder="name" ng-model="newdata.name" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label>email</label>
+		<input type="text" placeholder="email" ng-model="newdata.email" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label>address</label>
+		<textarea placeholder="name" ng-model="newdata.address" class="form-control"></textarea>
+	</div>
+
+	<div class="form-group">
+		<label>gender</label>
+		<input type="radio" ng-model="newdata.gender" value="male">male
+		<input type="radio" ng-model="newdata.gender" value="female">female
+	</div>
+
+	<div class="form-group">
+		<label>city</label>
+		<select class="form-control" ng-model="newdata.city">
+			<option>select</option>
+			<option>pune</option>
+			<option>mumbai</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label>hobbies</label>
+		<input type="checkbox" ng-model="newdata.hobbies" value="dancing">dancing
+		<input type="checkbox" ng-model="newdata.hobbies" value="modelling">modelling
+	</div>
+
+	<button class="btn btn-primary btn-lg" ng-click="add()">{{newdata.id?"Update":"Add"}}</button>
+
+<table class="table table-bordered table-stripped">
+	<tr>
+		<th>S.no</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Address</th>
+		<th>Gender</th>
+		<th>City</th>
+		<th>Hobbies</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+
+	<tr ng-repeat="x in alldata">
+		<td ng-bind="$index+1"></td>
+		<td ng-bind="x.name"></td>
+		<td ng-bind="x.email"></td>
+		<td ng-bind="x.address"></td>
+		<td ng-bind="x.gender"></td>
+		<td ng-bind="x.city"></td>
+		<td ng-bind="x.hobbies"></td>
+		<td><button class="btn btn-primary" ng-click="updata(x)">EDIT</button> </td>
+		<td><button class="btn btn-danger" data-toggle="modal" data-target="#delmodal" ng-click="askdel(x)">DELETE</button> </td>
+	</tr>
+</table>
+
+
+<div class="modal fade" id="delmodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="text-center">DELETE USER</h3>
+			</div>
+			<div class="modal-body">
+				<p> Are you sure you want to delete {{selectedobj.name}} ???</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success" data-dismiss="modal">Cancel</button>
+				<button class="btn btn-danger" data-dismiss="modal" ng-click="delete()">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
